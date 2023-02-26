@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
+import PageLoader from "../components/PageLoader";
+
 import styles from "./HomePage.module.scss";
+import NavBar from "../components/NavBar";
 
 const HomePage = () => {
-  const { loginWithRedirect } = useAuth0();
-
-  const handleLogin = () => {
-    loginWithRedirect();
-  };
-
+  console.log("home");
   return (
     <div className={styles.Home}>
-      <button className={styles["login-btn"]} onClick={handleLogin}>
-        Login with Popup
-      </button>
+      <NavBar />
     </div>
   );
 };

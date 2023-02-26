@@ -1,10 +1,11 @@
 .chat_container {
+  height: 100%;
   width: 500px;
-  height: 60vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .chat-header {
@@ -14,10 +15,32 @@
 }
 
 .chat-body {
-  height: 100%;
-  width: 100%;
+  height: 60vh;
+  width: 500px;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+  box-shadow: inset -5px -5px 9px rgba(255, 255, 255, 0.45),
+    inset 5px 5px 9px rgba(94, 104, 121, 0.3);
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
 
   margin: 20px 0;
+  padding: 20px;
+  padding-right: 12px;
 
   display: flex;
   flex-direction: column;
@@ -49,18 +72,15 @@
 .message {
   padding: 10px 15px;
   width: fit-content;
-  border-radius: 7px;
+  border-radius: 20px;
   font-size: 1.6rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
   &.received {
-    background-color: rgb(163, 220, 255);
+    background-color: #cfc2fc;
   }
 
   &.sent {
-    background-color: rgb(235, 235, 235);
+    background-color: #ace1ff;
   }
 }
 
@@ -71,17 +91,52 @@
 
 .chat-footer {
   width: 100%;
+  height: 60px;
   display: flex;
+
+  .profile_picture {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+
+    img {
+      object-fit: contain;
+      height: 100%;
+    }
+  }
 
   input {
     flex: 1;
     margin-right: 20px;
     font-size: 1.6rem;
-    padding: 10px;
+    padding: 10px 20px;
+    height: 100%;
+    box-sizing: border-box;
+
+    box-shadow: inset -5px -5px 9px rgba(255, 255, 255, 0.45),
+      inset 5px 5px 9px rgba(94, 104, 121, 0.3);
+
+    border: none;
+    border-radius: 15px;
+    background: #eef1f4;
   }
 
   button {
     font-size: 1.6rem;
     padding: 0 10px;
+
+    background: #eef1f4;
+    box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+      5px 5px 9px rgba(94, 104, 121, 0.3);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+        3px 3px 9px rgba(94, 104, 121, 0.3);
+    }
   }
 }

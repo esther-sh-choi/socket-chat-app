@@ -19,12 +19,37 @@ const io = new Server(server, {
   },
 });
 
+const users = [];
+
+const userJoin = (id, username, room) => {
+  const user = { id, username, room };
+
+  users.push(user);
+  return user;
+};
+
+const userLeave = (id) => {
+  const index = users.findIndex((user) => user.id === id);
+
+  if (index !== -1) {
+    return users.splice(index, 1)[0];
+  }
+};
+
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
-  socket.on("join_room", (room_id) => {
-    socket.join(room_id);
-    console.log(`User with ID: ${socket.id} joined room: ${room_id}`);
+  socket.on("join_room", ({ username, room }) => {
+    const user = userJoin(socket.id, username, room);
+
+    socket.join(user.room);
+    console.log(`User with ID: ${user.id} joined room: ${user.room}`);
+
+    socket.emit("message", "Chatty: Welcome to ChatCord!");
+  });
+
+  socket.on("send_user_data", (data) => {
+    socket.to(data.room_id).emit("enter_chat_notification", data.user);
   });
 
   socket.on("send_message", (messageData) => {

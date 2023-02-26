@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./Chat.module.scss";
 
-const Chat = ({ socket, room_id }) => {
+const Chat = ({ socket, room_id, user }) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [renderMessages, setRenderMessages] = useState([]);
+  const [userDataList, setUserDataList] = useState([]);
 
   const sendMessage = () => {
     return new Promise((resolve, reject) => {
@@ -27,11 +28,16 @@ const Chat = ({ socket, room_id }) => {
   };
 
   useEffect(() => {
+    socket.on("enter_chat_notification", (data) => {
+      setUserDataList((prev) => [...prev, data.user]);
+    });
+
     socket.on("receive_message", (data) => {
       setRenderMessages((prev) => [...prev, { received: data }]);
     });
 
     return () => {
+      socket.off("enter_chat_notification");
       socket.off("receive_message");
     };
   }, [socket]);
@@ -59,6 +65,9 @@ const Chat = ({ socket, room_id }) => {
         })}
       </div>
       <div className={styles["chat-footer"]}>
+        <div className={styles.profile_picture}>
+          <img src={user.picture} alt="user profile picture" />
+        </div>
         <input
           type="text"
           placeholder="Type message..."

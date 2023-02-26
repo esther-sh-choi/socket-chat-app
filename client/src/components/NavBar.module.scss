@@ -1,0 +1,33 @@
+.navbar {
+  background-color: rgb(82, 140, 192);
+  width: 100%;
+  height: 50px;
+
+  box-sizing: border-box;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  font-size: 3rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.authentication_buttons {
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 1.6rem;
+  }
+
+  & :last-child {
+    margin-left: 10px;
+  }
+}

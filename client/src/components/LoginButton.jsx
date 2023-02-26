@@ -6,19 +6,22 @@ import styles from "./LoginButton.module.scss";
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  const handleLogin = async () => {
-    await loginWithRedirect({
-      appState: {
-        returnTo: "/profile",
-      },
-      authorizationParams: {
-        screen_hint: "signup",
-      },
-    });
-  };
+  // const handleLogin = async () => {
+  //   await loginWithRedirect({
+  //     appState: {
+  //       returnTo: "/chat",
+  //     },
+  //     authorizationParams: {
+  //       screen_hint: "signup",
+  //     },
+  //   });
+  // };
 
   return (
-    <button className={styles.button__login} onClick={handleLogin}>
+    <button
+      className={styles.button__login}
+      onClick={() => loginWithRedirect()}
+    >
       Log In
     </button>
   );

@@ -3,7 +3,7 @@ import React from "react";
 
 import styles from "./LogoutButton.module.scss";
 
-export const LogoutButton = () => {
+const LogoutButton = ({ socket }) => {
   const { logout } = useAuth0();
 
   const handleLogout = () => {
@@ -20,3 +20,5 @@ export const LogoutButton = () => {
     </button>
   );
 };
+
+export default LogoutButton;

@@ -1,11 +1,15 @@
 import React from "react";
 
-export const PageLoader = () => {
+import styles from "./PageLoader.module.scss";
+
+const PageLoader = () => {
   const loadingImg = "https://cdn.auth0.com/blog/hello-auth0/loader.svg";
 
   return (
-    <div className="loader">
+    <div className={styles.loader}>
       <img src={loadingImg} alt="Loading..." />
     </div>
   );
 };
+
+export default PageLoader;
